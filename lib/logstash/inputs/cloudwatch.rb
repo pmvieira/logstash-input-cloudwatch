@@ -151,7 +151,7 @@ class LogStash::Inputs::CloudWatch < LogStash::Inputs::Base
 
       @logger.info('Polling CloudWatch API')
 
-      raise 'No metrics to query' unless metrics_for(@namespace).count > 0
+      warn "WARNING: No metrics to query for #{@namespace}" unless metrics_for(@namespace).count > 0
 
       # For every metric
       metrics_for(@namespace).each do |metric|
